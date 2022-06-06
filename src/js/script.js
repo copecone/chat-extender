@@ -19,5 +19,5 @@ document.addEventListener("DOMContentLoaded", (event) => {
         get: (searchParams, prop) => searchParams.get(prop),
     });
 
-    youtubeChat.src = `https://www.youtube.com/live_chat?is_popout=1&v=${query_args.yt_chat}`
+    youtubeChat.src = `https://www.youtube.com/live_chat?is_popout=1&v=${query_args.yt_chat}&embed_domain=${window.location.host}`
 })
