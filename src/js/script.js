@@ -1,4 +1,4 @@
-if ('serviceWorker' in navigator) {
+if (navigator.hasOwnProperty('serviceWorker')) {
     window.addEventListener("load", () => {
         navigator.serviceWorker
             .register("./sw.js")

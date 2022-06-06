@@ -1,7 +1,8 @@
-forceLocal = ['youtube.com', 'twitch.tv']
+/* eslint-disable */
+const forceLocal = ['youtube.com', 'twitch.tv']
 
 self.addEventListener('install', (event) => {
-    console.log('[Service Worker] Install');
+    console.log('[Service Worker] Install')
 })
 
 self.addEventListener('fetch', (event) => {
