@@ -8,7 +8,6 @@ self.addEventListener('fetch', (event) => {
     console.log('Fetch!', event.request)
     eventUrl = new URL(event.request.url);
     clearedUrl = eventUrl.hostname.replace('www.', '')
-    /*
     if (forceLocal.includes(clearedUrl)) {
         event.respondWith(
             async () => {
@@ -24,5 +23,5 @@ self.addEventListener('fetch', (event) => {
         )
     } else {
         event.respondWith(fetch(event.request))
-    }*/
+    }
 })
