@@ -1,13 +1,13 @@
-if ('serviceWorker' in navigator) {
-    window.addEventListener("load", () => {
+
+
+document.addEventListener("DOMContentLoaded", (event) => {
+    if ('serviceWorker' in navigator) {
         navigator.serviceWorker
             .register("./sw.js")
             .then(res => console.log("Service Worker Registered!"))
             .catch(err => console.log(err))
-    })
-}
+    }
 
-document.addEventListener("DOMContentLoaded", (event) => {
     chatFrames = document.querySelector("#chat-frames")
 
     console.log(chatFrames);
