@@ -33,9 +33,12 @@ self.addEventListener('fetch', (event) => {
     console.log('Fetch!', event.request)
     eventUrl = new URL(event.request.url)
     clearedUrl = eventUrl.hostname.replace('www.', '')
+
     if (forceLocal.includes(clearedUrl)) {
-        event.respondWith(convertRequest(event))
+        fetchedRequest = convertRequest(event)
     } else {
-        event.respondWith(fetch(event.request))
+        fetchedRequest = fetch(event.request)
     }
+
+    event.respondWith(fetchedRequest)
 })
