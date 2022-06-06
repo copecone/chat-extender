@@ -1,15 +1,30 @@
 /* eslint-disable */
 const forceLocal = ['youtube.com', 'twitch.tv']
 
-self.addEventListener('install', (event) => {
+const enablePreload = async () => {
+    if (self.registration.navigationPreload) {
+        // Enable navigation preloads!
+        await self.registration.navigationPreload.enable()
+    }
+}
 
-    event.waitUntil()
+const convertRequest = (event) => {
+    return fetch(
+        new Request(event.request, {
+            mode: 'cors',
+            headers: {
+                'sec-fetch-site': 'same-origin'
+            }
+        })
+    )
+}
+
+self.addEventListener('install', (event) => {
     console.log('[Service Worker] Installed')
 })
 
 self.addEventListener('activate', (event) => {
-
-    self.clients.claim()
+    event.waitUntil(enablePreload)
     console.log('[Service Worker] Activated')
 })
 
@@ -18,18 +33,7 @@ self.addEventListener('fetch', (event) => {
     eventUrl = new URL(event.request.url)
     clearedUrl = eventUrl.hostname.replace('www.', '')
     if (forceLocal.includes(clearedUrl)) {
-        event.respondWith(
-            async function() {
-                return await fetch(
-                    new Request(event.request, {
-                        mode: 'cors',
-                        headers: {
-                            'sec-fetch-site': 'same-origin'
-                        }
-                    })
-                )
-            }()
-        )
+        event.respondWith(convertRequest(event))
     } else {
         event.respondWith(fetch(event.request))
     }
