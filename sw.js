@@ -11,7 +11,7 @@ const enablePreload = async () => {
 const convertRequest = (event) => {
     return fetch(
         new Request(event.request.url, {
-            mode: 'on-cors',
+            mode: 'no-cors',
             headers: {
                 'sec-fetch-site': 'same-origin',
                 'wasans': 'papyrus'
