@@ -20,5 +20,5 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
 
     youtubeChat.src = `https://www.youtube.com/live_chat?is_popout=1&v=${query_args.youtube}&embed_domain=${window.location.host}`
-    twitchChat.src = `https://www.twitch.tv/popout/${query_args.twitch}/chat?popout=`
+    twitchChat.src = `https://www.twitch.tv/embed/${query_args.twitch}/chat`
 })
