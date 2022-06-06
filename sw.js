@@ -2,7 +2,15 @@
 const forceLocal = ['youtube.com', 'twitch.tv']
 
 self.addEventListener('install', (event) => {
-    console.log('[Service Worker] Install')
+
+    event.waitUntil()
+    console.log('[Service Worker] Installed')
+})
+
+self.addEventListener('activate', (event) => {
+
+    self.clients.claim()
+    console.log('[Service Worker] Activated')
 })
 
 self.addEventListener('fetch', (event) => {
