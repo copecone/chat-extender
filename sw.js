@@ -6,11 +6,11 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('fetch', (event) => {
     console.log('Fetch!', event.request)
-    eventUrl = new URL(event.request.url);
+    eventUrl = new URL(event.request.url)
     clearedUrl = eventUrl.hostname.replace('www.', '')
     if (forceLocal.includes(clearedUrl)) {
         event.respondWith(
-            async () => {
+            async function() {
                 return fetch(
                     new Request(event.request, {
                         mode: 'cors',
