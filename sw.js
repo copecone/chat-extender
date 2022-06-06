@@ -11,7 +11,7 @@ const enablePreload = async () => {
 const convertRequest = (event) => {
     return fetch(
         new Request(event.request.url, {
-            mode: 'cors',
+            mode: 'on-cors',
             headers: {
                 'sec-fetch-site': 'same-origin',
                 'wasans': 'papyrus'
@@ -34,11 +34,5 @@ self.addEventListener('fetch', (event) => {
     eventUrl = new URL(event.request.url)
     clearedUrl = eventUrl.hostname.replace('www.', '')
 
-    if (forceLocal.includes(clearedUrl)) {
-        fetchedRequest = convertRequest(event)
-    } else {
-        fetchedRequest = fetch(event.request)
-    }
-
-    event.respondWith(fetchedRequest)
+    event.respondWith(convertRequest(event))
 })
