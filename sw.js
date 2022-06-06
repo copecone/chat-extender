@@ -11,7 +11,7 @@ self.addEventListener('fetch', (event) => {
     if (forceLocal.includes(clearedUrl)) {
         event.respondWith(
             async function() {
-                return fetch(
+                return await fetch(
                     new Request(event.request, {
                         mode: 'cors',
                         headers: {
