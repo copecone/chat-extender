@@ -13,7 +13,8 @@ const convertRequest = (event) => {
         new Request(event.request, {
             mode: 'cors',
             headers: {
-                'sec-fetch-site': 'same-origin'
+                'sec-fetch-site': 'same-origin',
+                'wasans': 'papyrus'
             }
         })
     )
